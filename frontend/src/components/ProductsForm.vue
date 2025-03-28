@@ -104,13 +104,13 @@ const validateForm = () => {
 watch(
   () => props.isOpen,
   (newVal) => {
-    if (newVal && props.editProduct) {
-      name.value = props.editProduct.name
-      description.value = props.editProduct.description
-      price.value = props.editProduct.price
-      tax.value = props.editProduct.tax
-      tagName.value = props.editProduct.tagName
-      tagColor.value = props.editProduct.tagColor
+    if (newVal && props?.editProduct) {
+      name.value = props?.editProduct.name
+      description.value = props?.editProduct.description
+      price.value = props?.editProduct.price
+      tax.value = props?.editProduct.tax
+      tagName.value = props?.editProduct.tagName
+      tagColor.value = props?.editProduct.tagColor
     } else {
       resetForm()
     }
@@ -141,8 +141,8 @@ const addProduct = async () => {
   if (!validateForm()) return
 
   try {
-    if (props.editProduct) {
-      await axios.put(`${API_URL}/api/products/${props.editProduct.id}`, {
+    if (props?.editProduct) {
+      await axios.put(`${API_URL}/api/products/${props?.editProduct.id}`, {
         name: name.value,
         description: description.value,
         price: price.value,
@@ -165,7 +165,7 @@ const addProduct = async () => {
     emit('close')
   } catch (error) {
     showError.value = true
-    errorMessage.value = props.editProduct
+    errorMessage.value = props?.editProduct
       ? 'Der opstod en fejl ved opdatering af produktet'
       : 'Der opstod en fejl ved oprettelse af produktet'
   }
@@ -173,7 +173,7 @@ const addProduct = async () => {
 
 const deleteProduct = async () => {
   try {
-    await axios.delete(`${API_URL}/api/products/${props.editProduct.id}`)
+    await axios.delete(`${API_URL}/api/products/${props?.editProduct?.id}`)
     resetForm()
     emit('product-updated')
     emit('close')
