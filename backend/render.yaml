@@ -3,6 +3,8 @@ services:
     name: laravel-backend
     env: docker
     dockerfilePath: ./Dockerfile
+    dockerContext: .
+    dockerCommand: docker build -t laravel-app . && docker run -p $PORT:8000 laravel-app
     envVars:
       - key: APP_ENV
         value: production
