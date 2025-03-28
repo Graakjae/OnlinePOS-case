@@ -17,7 +17,7 @@ interface Product {
 
 const products = ref<Product[]>([])
 const isModalOpen = ref(false)
-const editProduct = ref<Product | null>(null)
+const editProduct = ref<Product | undefined>(undefined)
 const windowWidth = ref(window.innerWidth)
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'
@@ -57,12 +57,12 @@ const fetchProducts = async () => {
 
 const openModal = () => {
   isModalOpen.value = true
-  editProduct.value = null
+  editProduct.value = undefined
 }
 
 const closeModal = () => {
   isModalOpen.value = false
-  editProduct.value = null
+  editProduct.value = undefined
 }
 
 const editProductModal = (product: Product) => {
