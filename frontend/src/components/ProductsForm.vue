@@ -135,12 +135,14 @@ const resetForm = () => {
   tagColor.value = ''
 }
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'
+
 const addProduct = async () => {
   if (!validateForm()) return
 
   try {
     if (props.editProduct) {
-      await axios.put(`http://127.0.0.1:8000/api/products/${props.editProduct.id}`, {
+      await axios.put(`${API_URL}/api/products/${props.editProduct.id}`, {
         name: name.value,
         description: description.value,
         price: price.value,
@@ -149,7 +151,7 @@ const addProduct = async () => {
         tagColor: tagColor.value,
       })
     } else {
-      await axios.post('http://127.0.0.1:8000/api/products', {
+      await axios.post(`${API_URL}/api/products`, {
         name: name.value,
         description: description.value,
         price: price.value,
@@ -171,7 +173,7 @@ const addProduct = async () => {
 
 const deleteProduct = async () => {
   try {
-    await axios.delete(`http://127.0.0.1:8000/api/products/${props.editProduct.id}`)
+    await axios.delete(`${API_URL}/api/products/${props.editProduct.id}`)
     resetForm()
     emit('product-updated')
     emit('close')

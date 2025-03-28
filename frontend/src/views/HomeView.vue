@@ -20,6 +20,8 @@ const isModalOpen = ref(false)
 const editProduct = ref<Product | null>(null)
 const windowWidth = ref(window.innerWidth)
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'
+
 const updateWindowWidth = () => {
   windowWidth.value = window.innerWidth
 }
@@ -46,7 +48,7 @@ const formatPrice = (price: number) => {
 
 const fetchProducts = async () => {
   try {
-    const response = await axios.get('http://127.0.0.1:8000/api/products')
+    const response = await axios.get(`${API_URL}/api/products`)
     products.value = response.data
   } catch (error) {
     console.error('Error fetching products:', error)
@@ -74,7 +76,7 @@ const handleProductUpdated = () => {
 
 const updateOrder = async (evt: any) => {
   try {
-    await axios.post('http://127.0.0.1:8000/api/products/order', {
+    await axios.post(`${API_URL}/api/products/order`, {
       order: products.value.map((p) => p.id),
     })
   } catch (error) {
