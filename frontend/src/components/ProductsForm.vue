@@ -12,6 +12,7 @@ const props = defineProps<{
     tax: number
     tagName: string
     tagColor: string
+    order: number
   }
 }>()
 
