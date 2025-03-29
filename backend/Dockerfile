@@ -38,15 +38,21 @@ RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
 # Configure Nginx
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Expose port
-EXPOSE 80
-
 # Create startup script
 RUN echo '#!/bin/bash\n\
+echo "Waiting for database to be ready..."\n\
+sleep 10\n\
+echo "Running migrations..."\n\
 php artisan migrate --force\n\
+echo "Running seeders..."\n\
 php artisan db:seed --force\n\
+echo "Starting Nginx..."\n\
 service nginx start\n\
+echo "Starting PHP-FPM..."\n\
 php-fpm' > /var/www/start.sh && chmod +x /var/www/start.sh
+
+# Expose port
+EXPOSE 80
 
 # Start Nginx & PHP-FPM
 CMD ["/var/www/start.sh"] 
