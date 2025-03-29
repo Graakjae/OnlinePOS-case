@@ -41,5 +41,12 @@ COPY nginx.conf /etc/nginx/conf.d/default.conf
 # Expose port
 EXPOSE 80
 
+# Create startup script
+RUN echo '#!/bin/bash\n\
+php artisan migrate --force\n\
+php artisan db:seed --force\n\
+service nginx start\n\
+php-fpm' > /var/www/start.sh && chmod +x /var/www/start.sh
+
 # Start Nginx & PHP-FPM
-CMD service nginx start && php-fpm 
+CMD ["/var/www/start.sh"] 
