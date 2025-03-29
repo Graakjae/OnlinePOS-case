@@ -5,7 +5,7 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['*'],
+    'allowed_origins' => ['https://online-pos-case-ruby.vercel.app'],
 
     'allowed_origins_patterns' => [],
 
