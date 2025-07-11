@@ -1,1 +1,1 @@
-Denne case udviklede jeg i forbindelse med en jobsamtale hos OnlinePOS
+Denne løsning er udviklet som en del af en test case fra OnlinePOS. Den indeholder et simpelt administrationsmodul, hvor restaurant-ejere kan oprette, redigere, slette og sortere produkter, der vises på en take away-hjemmeside. Løsningen er bygget med Vue 3, PrimeVue og Laravel.
