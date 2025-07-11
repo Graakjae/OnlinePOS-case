@@ -1,4 +1,4 @@
-# OnlinePOS – 
+# OnlinePOS
 
 ## Om løsningen
 
